@@ -3,13 +3,13 @@
 [![Build Status](https://dev.azure.com/NordicSemiconductor/Wayland/_apis/build/status/pc-nrfconnect-quickstart-for-matter?branchName=main)](https://dev.azure.com/NordicSemiconductor/Wayland/_build/latest?definitionId=10&branchName=main)
 [![License](https://img.shields.io/badge/license-Modified%20BSD%20License-blue.svg)](LICENSE)
 
-The Quick Start for Matter app is a cross-platform tool for guided setup and installation
-procedures of Nordic Semiconductor devices.
+The Quick Start for Matter app is a cross-platform tool for guided setup and
+installation procedures of Nordic Semiconductor devices.
 
 ## Installation
 
-The Quick Start for Matter app is installed from nRF Connect from Desktop. For detailed
-steps, see
+The Quick Start for Matter app is installed from nRF Connect from Desktop. For
+detailed steps, see
 [Installing nRF Connect for Desktop apps](https://docs.nordicsemi.com/bundle/nrf-connect-desktop/page/installing_apps.html)
 in the nRF Connect from Desktop documentation.
 
@@ -19,8 +19,8 @@ application.
 
 ## Documentation
 
-The Quick Start for Matter app is meant as an onboarding tool and it does not come with its
-own documentation.
+The Quick Start for Matter app is meant as an onboarding tool and it does not
+come with its own documentation.
 
 ## Development
 

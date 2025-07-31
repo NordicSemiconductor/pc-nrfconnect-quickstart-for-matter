@@ -4,19 +4,20 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
+// import path from 'path';
+
 import Verify from '../../../common/steps/5xFamilyVerify';
 import Apps from '../../../common/steps/Apps';
 import Develop from '../../../common/steps/develop';
+import EcosystemRequirements from '../../../common/steps/EcosystemRequirements';
 import Info from '../../../common/steps/Info';
+import Interaction from '../../../common/steps/Interaction';
 import Learn from '../../../common/steps/Learn';
+import Pairing from '../../../common/steps/Pairing';
 import Program from '../../../common/steps/program';
 import Rename from '../../../common/steps/Rename';
 import SelectEcosystem from '../../../common/steps/SelectEcosystem';
-import EcosystemRequirements from '../../../common/steps/EcosystemRequirements';
-import Pairing from '../../../common/steps/Pairing';
-import Interaction from '../../../common/steps/Interaction';
 import { Choice } from '../../device/deviceSlice';
-import path from 'path';
 
 const infoConfig = {
     title: 'Versatile single-board development kit',
@@ -28,7 +29,8 @@ const programConfig = [
     {
         name: 'Matter Door Lock',
         type: 'jlink',
-        description: 'This door lock sample demonstrates the usage of the Matter application layer to build a door lock device with one basic bolt. You can use this sample as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network.',
+        description:
+            'This door lock sample demonstrates the usage of the Matter application layer to build a door lock device with one basic bolt. You can use this sample as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network.',
         documentation: {
             label: 'Matter Door Lock',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/lock/README.html',
@@ -47,7 +49,8 @@ const programConfig = [
     {
         name: 'Matter Light Bulb',
         type: 'jlink',
-        description: 'This light bulb sample demonstrates the usage of the Matter application layer to build a white dimmable light bulb device. You can use this sample as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network.',
+        description:
+            'This light bulb sample demonstrates the usage of the Matter application layer to build a white dimmable light bulb device. You can use this sample as a reference for creating your application. This device works as a Matter accessory device, meaning it can be paired and controlled remotely over a Matter network built on top of a low-power 802.15.4 Thread network.',
         documentation: {
             label: 'Matter Light Bulb',
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/samples/matter/light_bulb/README.html',
@@ -86,50 +89,58 @@ const ecosystemsConfig = [
     {
         name: 'Apple Home',
         description: 'Work with Apple Home',
-        link: 'https://www.apple.com/home-app/'
+        link: 'https://www.apple.com/home-app/',
     },
     {
         name: 'Google Home',
         description: 'Work with Google Home',
-        link: 'https://home.google.com/welcome/'
+        link: 'https://home.google.com/welcome/',
     },
     {
         name: 'Amazon Alexa',
         description: 'Work with Amazon Alexa',
-        link: 'https://www.amazon.com/Alexa-App/b?ie=UTF8&node=18354642011'
+        link: 'https://www.amazon.com/Alexa-App/b?ie=UTF8&node=18354642011',
     },
     {
         name: 'SmartThings',
         description: 'Work with SmartThings',
-        link: 'https://www.samsung.com/uk/smartthings/app/'
+        link: 'https://www.samsung.com/uk/smartthings/app/',
     },
 ];
 
-const lockFactoryDataImagePath = path.resolve(__dirname, '../../../resources/devices/images/lock_factory_data.png');
-const lightBulbFactoryDataImagePath = path.resolve(__dirname, '../../../resources/devices/images/light_bulb_factory_data.png');
+// TODO: Uncomment when pairing section is implemented
+// const lockFactoryDataImagePath = path.resolve(
+//     __dirname,
+//     '../../../resources/devices/images/lock_factory_data.png'
+// );
+// const lightBulbFactoryDataImagePath = path.resolve(
+//     __dirname,
+//     '../../../resources/devices/images/light_bulb_factory_data.png'
+// );
 
-const pairingConfig = [
-    {
-        name: 'Matter Door Lock',
-        qrCodePng: lockFactoryDataImagePath,
-    },
-    {
-        name: 'Matter Light Bulb',
-        qrCodePng: lightBulbFactoryDataImagePath,
-    },
-];
+// const pairingConfig = [
+//     {
+//         name: 'Matter Door Lock',
+//         qrCodePng: lockFactoryDataImagePath,
+//     },
+//     {
+//         name: 'Matter Light Bulb',
+//         qrCodePng: lightBulbFactoryDataImagePath,
+//     },
+// ];
 
 const interactConfig = [
     {
-        name: "Matter Door Lock",
-        instruction: "Click the Matter Door Lock icon to change the device state and watch the LED2 on the board that corresponds to the lock state."
-        
+        name: 'Matter Door Lock',
+        instruction:
+            'Click the Matter Door Lock icon to change the device state and watch the LED2 on the board that corresponds to the lock state.',
     },
     {
-        name: "Matter Light Bulb",
-        instruction: "Click the Matter Light Bulb icon to change the device state and watch the LED2 on the board that corresponds to the light bulb state."
-    }
-];  
+        name: 'Matter Light Bulb',
+        instruction:
+            'Click the Matter Light Bulb icon to change the device state and watch the LED2 on the board that corresponds to the light bulb state.',
+    },
+];
 
 const learnConfig = [
     {
