@@ -15,11 +15,41 @@ import {
 } from '../../../features/device/deviceSlice';
 import { Back } from '../../Back';
 import Main from '../../Main';
-import { Next, Skip } from '../../Next';
+import { Next } from '../../Next';
+import SetupPayload, { CommissioningFlow, DiscoveryCapability } from '../../SetupPayload';
+import tempFileManager from '../../TempFileManager';
 import runVerification from './serialport';
 import { getError, getResponse, reset, setError } from './verifySlice';
 
 import './cursor.scss';
+
+let qrCodeFile: string | undefined;
+
+export const getQRCode = () => {
+    return qrCodeFile;
+};
+
+export const cleanupQRCode = async (): Promise<void> => {
+    if (qrCodeFile) {
+        await tempFileManager.removeTempFile(qrCodeFile);
+        qrCodeFile = undefined;
+    }
+};
+
+const generateQRCodeFromLogs = async (logs: string): Promise<void> => {
+    try {
+        const payload = SetupPayload.fromLogs(logs, DiscoveryCapability.BLE, CommissioningFlow.Standard);
+        payload.generateQRCode();
+        console.log(payload.prettyPrint());
+
+        // Use temp file manager to create and track temporary file
+        const tempFilePath = tempFileManager.createTempFilePath();
+        console.log(tempFilePath);
+        qrCodeFile = await payload.GenerateQRCodeImage(tempFilePath);
+    } catch (error) {
+        throw error;
+    }
+};
 
 export default ({ vComIndex, regex }: { vComIndex: number; regex: RegExp }) => {
     const choice = useAppSelector(getChoiceUnsafely);
@@ -74,6 +104,13 @@ export default ({ vComIndex, regex }: { vComIndex: number; regex: RegExp }) => {
         }
     }, [validResponse, cleanup, errorTimeout]);
 
+    // Generate QR code when we have a valid response
+    useEffect(() => {
+        if (validResponse && !qrCodeFile) {
+            generateQRCodeFromLogs(validResponse);
+        }
+    }, [validResponse]);
+
     const getHeading = () => {
         if (error) {
             return 'Verification failed';
@@ -82,6 +119,11 @@ export default ({ vComIndex, regex }: { vComIndex: number; regex: RegExp }) => {
             return 'Verification successful';
         }
         return 'Verifying';
+    };
+
+    const handleReset = () => {
+        cleanupQRCode();
+        dispatch(reset());
     };
 
     return (
@@ -115,9 +157,8 @@ export default ({ vComIndex, regex }: { vComIndex: number; regex: RegExp }) => {
             </Main.Content>
             <Main.Footer>
                 <Back disabled={waiting} />
-                {error && <Skip />}
                 {error ? (
-                    <Next label="Retry" onClick={() => dispatch(reset())} />
+                    <Next label="Retry" onClick={() => handleReset()} />
                 ) : (
                     <Next disabled={waiting || !!error} />
                 )}
