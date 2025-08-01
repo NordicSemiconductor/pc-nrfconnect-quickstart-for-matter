@@ -17,6 +17,7 @@ import { Back } from '../../Back';
 import Main from '../../Main';
 import { Next } from '../../Next';
 import SetupPayload, { CommissioningFlow, DiscoveryCapability } from '../../SetupPayload';
+import tempFileManager from '../../TempFileManager';
 import runVerification from './serialport';
 import { getError, getResponse, reset, setError } from './verifySlice';
 
@@ -30,8 +31,7 @@ export const getQRCode = () => {
 
 export const cleanupQRCode = async (): Promise<void> => {
     if (qrCodeFile) {
-        const fs = require('fs').promises;
-        await fs.unlink(qrCodeFile);
+        await tempFileManager.removeTempFile(qrCodeFile);
         qrCodeFile = undefined;
     }
 };
@@ -42,13 +42,9 @@ const generateQRCodeFromLogs = async (logs: string): Promise<void> => {
         payload.generateQRCode();
         console.log(payload.prettyPrint());
 
-        const os = require('os');
-        const path = require('path');
-
-        const tempDir = os.tmpdir();
-        const filename = `matter-qr-${Date.now()}.png`;
-        const tempFilePath = path.join(tempDir, filename);
-
+        // Use temp file manager to create and track temporary file
+        const tempFilePath = tempFileManager.createTempFilePath();
+        console.log(tempFilePath);
         qrCodeFile = await payload.GenerateQRCodeImage(tempFilePath);
     } catch (error) {
         throw error;
