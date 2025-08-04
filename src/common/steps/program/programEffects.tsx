@@ -28,6 +28,8 @@ import {
     setProgrammingProgress,
 } from './programSlice';
 
+import { logger } from '@nordicsemiconductor/pc-nrfconnect-shared';
+
 const checkDeviceConnected =
     (): AppThunk<RootState, boolean> => (dispatch, getState) => {
         if (!selectedDeviceIsConnected(getState())) {

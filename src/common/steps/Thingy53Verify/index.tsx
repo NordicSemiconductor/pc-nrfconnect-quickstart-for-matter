@@ -33,7 +33,7 @@ import {
 export interface Command {
     title: string;
     command: string;
-    responseRegex: string;
+    responseRegex: RegExp;
     copiable?: boolean;
 }
 
@@ -164,7 +164,7 @@ const VerifyConfigLayer = ({
 }) => {
     const device = useAppSelector(getSelectedDeviceUnsafely);
     const choice = useAppSelector(getChoiceUnsafely);
-    const choiceSettings = settings.find(s => s.ref === choice.name);
+    const choiceSettings = settings[0]
     const path =
         choiceSettings &&
         device.serialPorts?.[choiceSettings.vComIndex]?.comName;

@@ -4,16 +4,13 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
-export const formatResponse = (response: string, responseRegex: string) => {
-    const regex = new RegExp(responseRegex);
-    const filteredResponse =
-        response
-            .split('\nOK', 1)[0]
-            .split('\n')
-            .filter(line => !!line.trim())
-            .at(-1) ?? '';
+export const formatResponse = (response: string, responseRegex: RegExp) => {
+    const [, match] = response.match(responseRegex) ?? [];
 
-    const [, match] = filteredResponse.match(regex) ?? [];
+    if (!match) {
+        throw new Error(
+            `No match found for regex "${responseRegex}" in response "${response}"`);
+    }
 
     return match;
 };

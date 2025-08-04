@@ -22,7 +22,7 @@ const initialState: State = {
 };
 
 const slice = createSlice({
-    name: 'verification91',
+    name: 'verificationThingy53',
     initialState,
     reducers: {
         setResponses: (state, action: PayloadAction<string[]>) => {
@@ -45,10 +45,10 @@ const slice = createSlice({
 export const { setResponses, setFailed, reset } = slice.actions;
 
 export const getResponses = (state: RootState) =>
-    state.steps.verification91.responses;
+    state.steps.verificationThingy53.responses;
 export const getFailed = (state: RootState) =>
-    state.steps.verification91.failed;
+    state.steps.verificationThingy53.failed;
 export const getShowSkip = (state: RootState) =>
-    state.steps.verification91.showSkip;
+    state.steps.verificationThingy53.showSkip;
 
 export default slice.reducer;

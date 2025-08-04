@@ -17,12 +17,12 @@ import { formatResponse } from './formatATResponse';
 
 export interface Command {
     command: string;
-    responseRegex: string;
+    responseRegex: RegExp;
 }
 
 const sendCommandShellMode = (parser: ShellParser, command: string) =>
     new Promise<string>((resolve, reject) => {
-        parser.enqueueRequest(`at ${command}`, {
+        parser.enqueueRequest(`${command}`, {
             onSuccess: res => {
                 resolve(res);
             },

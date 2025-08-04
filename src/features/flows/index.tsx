@@ -9,6 +9,7 @@ import React from 'react';
 import NRF54L15 from './nRF54L15';
 import NRF5340 from './nRF5340';
 import NRF52840 from './nRF52840';
+import THINGY53 from './thingy53';
 
 export interface Flow {
     name: string;
@@ -19,4 +20,5 @@ export default {
     [NRF52840.device]: NRF52840.flow,
     [NRF5340.device]: NRF5340.flow,
     [NRF54L15.device]: NRF54L15.flow,
+    [THINGY53.device]: THINGY53.flow,
 } as Record<string, Flow[]>;
