@@ -41,7 +41,7 @@
         "test": "jest --passWithNoTests",
         "check": "run-p --silent --continue-on-error --print-label check:*",
         "check:app": "check-app-properties",
-        "check:lint": "eslint --color . --fix",
+        "check:lint": "eslint --color .",
         "check:types": "check-for-typescript tsc --noEmit --pretty",
         "check:license": "nrfconnect-license check",
         "nordic-publish": "node ./dist/nordic-publish.js",

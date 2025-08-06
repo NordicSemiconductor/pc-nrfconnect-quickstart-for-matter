@@ -52,6 +52,40 @@ describe('SetupPayload', () => {
             expect(parsedPayload?.shortDiscriminator).toBe(15); // 3840 >> 8 = 15
             expect(parsedPayload?.pincode).toBe(20202021);
         });
+
+        it('should match expected manual code for passcode 20202021 and short discriminator 15', () => {
+            const payload = new SetupPayload(
+                3840, // 15 * 256, long discriminator that yields short discriminator 15
+                20202021,
+                0,
+                CommissioningFlow.Standard,
+                0,
+                0
+            );
+            const manualCode = payload.generateManualCode();
+            expect(manualCode).toBe('34970112332');
+
+            const parsed = SetupPayload.parseManualCode(manualCode);
+            expect(parsed?.shortDiscriminator).toBe(15);
+            expect(parsed?.pincode).toBe(20202021);
+        });
+
+        it('should match expected manual code for passcode 65286841 and short discriminator 6', () => {
+            const payload = new SetupPayload(
+                1536, // 6 * 256, long discriminator that yields short discriminator 6
+                65286841,
+                0,
+                CommissioningFlow.Standard,
+                0,
+                0
+            );
+            const manualCode = payload.generateManualCode();
+            expect(manualCode).toBe('14575339844');
+
+            const parsed = SetupPayload.parseManualCode(manualCode);
+            expect(parsed?.shortDiscriminator).toBe(6);
+            expect(parsed?.pincode).toBe(65286841);
+        });
     });
 
     describe('fromLogs functionality', () => {

@@ -9,7 +9,8 @@ export const formatResponse = (response: string, responseRegex: RegExp) => {
 
     if (!match) {
         throw new Error(
-            `No match found for regex "${responseRegex}" in response "${response}"`);
+            `No match found for regex "${responseRegex}" in response "${response}"`
+        );
     }
 
     return match;

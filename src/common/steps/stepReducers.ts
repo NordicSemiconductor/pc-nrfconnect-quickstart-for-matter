@@ -12,11 +12,11 @@ import { setFinishedLastStep } from '../../features/flow/flowSlice';
 import verification5x, {
     reset as verification5xReset,
 } from './5xFamilyVerify/verifySlice';
+import develop, { reset as developReset } from './develop/developSlice';
+import program, { reset as programReset } from './program/programSlice';
 import verificationThingy53, {
     reset as verificationThingy53Reset,
 } from './Thingy53Verify/verificationSlice';
-import develop, { reset as developReset } from './develop/developSlice';
-import program, { reset as programReset } from './program/programSlice';
 
 export const allReset = (): AppThunk => dispatch => {
     dispatch(setChoice(undefined));
