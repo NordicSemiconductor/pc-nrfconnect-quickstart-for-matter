@@ -4,12 +4,11 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
-// import path from 'path';
-
-import Verify from '../../../common/steps/Thingy53Verify';
 import Apps from '../../../common/steps/Apps';
 import Develop from '../../../common/steps/develop';
 import EcosystemRequirements from '../../../common/steps/EcosystemRequirements';
+import EcosystemSetup from '../../../common/steps/EcosystemSetup';
+import EnableAdvertising from '../../../common/steps/EnableAdvertising';
 import Info from '../../../common/steps/Info';
 import Interaction from '../../../common/steps/Interaction';
 import Learn from '../../../common/steps/Learn';
@@ -17,7 +16,9 @@ import Pairing from '../../../common/steps/Pairing';
 import Program from '../../../common/steps/program';
 import Rename from '../../../common/steps/Rename';
 import SelectEcosystem from '../../../common/steps/SelectEcosystem';
+import Verify from '../../../common/steps/Thingy53Verify';
 import { Choice } from '../../device/deviceSlice';
+import { AdvertisingData } from '../pairingConfig';
 
 const infoConfig = {
     title: 'Multi-protocol IoT prototyping platform',
@@ -60,33 +61,11 @@ const verifyConfig = {
         {
             title: 'matter config',
             command: 'matter config',
-            responseRegex: /(VendorId:[\s\S]*ProductId:[\s\S]*HardwareVersion:[\s\S]*PinCode:[\s\S]*Discriminator:[\s\S]*)Done/s
+            responseRegex:
+                /(VendorId:[\s\S]*ProductId:[\s\S]*HardwareVersion:[\s\S]*PinCode:[\s\S]*Discriminator:[\s\S]*)Done/s,
         },
     ],
 };
-
-const ecosystemsConfig = [
-    {
-        name: 'Apple Home',
-        description: 'Work with Apple Home',
-        link: 'https://www.apple.com/home-app/',
-    },
-    {
-        name: 'Google Home',
-        description: 'Work with Google Home',
-        link: 'https://home.google.com/welcome/',
-    },
-    {
-        name: 'Amazon Alexa',
-        description: 'Work with Amazon Alexa',
-        link: 'https://www.amazon.com/Alexa-App/b?ie=UTF8&node=18354642011',
-    },
-    {
-        name: 'SmartThings',
-        description: 'Work with SmartThings',
-        link: 'https://www.samsung.com/uk/smartthings/app/',
-    },
-];
 
 const interactConfig = [
     {
@@ -139,6 +118,11 @@ const appsConfig = [
     'pc-nrfconnect-dtm',
 ];
 
+const advertisingData = {
+    enablePairingImage: '../resources/devices/images/Thingy53_pairing.png',
+    button: 'Middle Button',
+} as AdvertisingData;
+
 export default {
     // TODO: For now QS for Matter does not support changing USB name at runtime. Thingy has to use the bootloader name before and after the DFU.
     device: 'Bootloader Thingy:53',
@@ -147,8 +131,10 @@ export default {
         Rename(),
         Program(programConfig),
         Verify(verifyConfig),
-        SelectEcosystem(ecosystemsConfig),
+        SelectEcosystem(),
         EcosystemRequirements(),
+        EcosystemSetup(),
+        EnableAdvertising(advertisingData),
         Pairing(),
         Interaction(interactConfig),
         Learn(learnConfig),

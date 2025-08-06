@@ -164,7 +164,7 @@ const VerifyConfigLayer = ({
 }) => {
     const device = useAppSelector(getSelectedDeviceUnsafely);
     const choice = useAppSelector(getChoiceUnsafely);
-    const choiceSettings = settings[0]
+    const choiceSettings = settings[0];
     const path =
         choiceSettings &&
         device.serialPorts?.[choiceSettings.vComIndex]?.comName;

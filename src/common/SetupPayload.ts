@@ -175,10 +175,10 @@ export class SetupPayload {
         const pid = this.flow !== CommissioningFlow.Standard ? this.pid : 0;
 
         // Pack into chunks
-        const chunk1Bits = (vidPidPresent << 2) | (discriminator & 0x03);
+        const chunk1Bits = (vidPidPresent << 2) | ((discriminator >> 2) & 0x03);
         const chunk1 = chunk1Bits.toString().padStart(1, '0');
 
-        const chunk2Bits = (pincodeLsb << 2) | ((discriminator >> 2) & 0x03);
+        const chunk2Bits = ((discriminator & 0x03) << 14) | pincodeLsb;
         const chunk2 = chunk2Bits.toString().padStart(5, '0');
 
         const chunk3 = pincodeMsb.toString().padStart(4, '0');
@@ -300,10 +300,10 @@ export class SetupPayload {
 
         // Extract fields
         const vidPidPresent = (chunk1 >> 2) & 0x01;
-        const discriminatorLsb = chunk1 & 0x03;
+        const discriminatorMsb = chunk1 & 0x03;
 
-        const pincodeLsb = (chunk2 >> 2) & 0x3fff;
-        const discriminatorMsb = chunk2 & 0x03;
+        const discriminatorLsb = (chunk2 >> 14) & 0x03;
+        const pincodeLsb = chunk2 & 0x3fff;
 
         const pincodeMsb = chunk3;
 
@@ -877,13 +877,39 @@ export class SetupPayload {
      * @returns {string} Check digit as string
      */
     private static calculateVerhoeffCheckDigit(payload: string): string {
-        // Simplified check digit calculation
-        // For production use, consider implementing the full Verhoeff algorithm
-        let sum = 0;
-        for (let i = 0; i < payload.length; i++) {
-            sum += parseInt(payload[i], 10) * (i + 1);
+        // Full Verhoeff check digit calculation for base-10
+        const d = [
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            [1, 2, 3, 4, 0, 6, 7, 8, 9, 5],
+            [2, 3, 4, 0, 1, 7, 8, 9, 5, 6],
+            [3, 4, 0, 1, 2, 8, 9, 5, 6, 7],
+            [4, 0, 1, 2, 3, 9, 5, 6, 7, 8],
+            [5, 9, 8, 7, 6, 0, 4, 3, 2, 1],
+            [6, 5, 9, 8, 7, 1, 0, 4, 3, 2],
+            [7, 6, 5, 9, 8, 2, 1, 0, 4, 3],
+            [8, 7, 6, 5, 9, 3, 2, 1, 0, 4],
+            [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+        ];
+        const p = [
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            [1, 5, 7, 6, 2, 8, 3, 0, 9, 4],
+            [5, 8, 0, 3, 7, 9, 6, 1, 4, 2],
+            [8, 9, 1, 6, 0, 4, 3, 5, 2, 7],
+            [9, 4, 5, 3, 1, 2, 6, 8, 7, 0],
+            [4, 2, 8, 6, 5, 7, 3, 9, 0, 1],
+            [2, 7, 9, 3, 8, 0, 6, 4, 1, 5],
+            [7, 0, 4, 6, 9, 1, 3, 2, 5, 8],
+        ];
+        const inv = [0, 4, 3, 2, 1, 5, 6, 7, 8, 9];
+
+        let c = 0;
+        const reversed = payload.split('').reverse();
+        for (let i = 0; i < reversed.length; i++) {
+            const digit = parseInt(reversed[i], 10);
+            if (Number.isNaN(digit)) throw new Error('Non-digit in payload');
+            c = d[c][p[(i + 1) % 8][digit]];
         }
-        return (sum % 10).toString();
+        return inv[c].toString();
     }
 
     /**
