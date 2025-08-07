@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Nordic Semiconductor ASA
+ * Copyright (c) 2025 Nordic Semiconductor ASA
  *
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
@@ -116,12 +116,12 @@ const learnConfig = [
         },
     },
     {
-        label: 'Developing with nRF52 Series',
+        label: 'Developing with Thingy:53',
         description:
             'Device-specific information about features, DFU solution, and development.',
         link: {
-            label: 'Developing with nRF52 Series',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/app_dev/device_guides/nrf52/index.html',
+            label: 'Developing with Thingy:53',
+            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/app_dev/device_guides/thingy53/index.html',
         },
     },
 ];
