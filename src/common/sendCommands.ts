@@ -13,7 +13,7 @@ import {
 } from '@nordicsemiconductor/pc-nrfconnect-shared';
 import { Terminal } from '@xterm/headless';
 
-import { formatResponse } from './formatATResponse';
+import { formatResponse } from './formatResponse';
 
 export interface Command {
     command: string;
@@ -140,7 +140,7 @@ export default async (
         await reducedPromise;
     } catch (e) {
         serialPort.unregister();
-        throw new Error('Received ERROR as return value from AT command');
+        throw new Error('Received ERROR as return value from command');
     }
 
     serialPort.unregister();

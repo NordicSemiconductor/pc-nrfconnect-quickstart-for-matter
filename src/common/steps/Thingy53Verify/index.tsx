@@ -21,7 +21,7 @@ import { Back } from '../../Back';
 import Copy from '../../Copy';
 import Main from '../../Main';
 import { Next, Skip } from '../../Next';
-import runVerification from '../../sendATCommands';
+import runVerification from '../../sendCommands';
 import {
     getFailed,
     getResponses,
