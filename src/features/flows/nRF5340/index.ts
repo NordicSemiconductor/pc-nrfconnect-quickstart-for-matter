@@ -17,6 +17,7 @@ import Program from '../../../common/steps/program';
 import Rename from '../../../common/steps/Rename';
 import SelectEcosystem from '../../../common/steps/SelectEcosystem';
 import { Choice } from '../../device/deviceSlice';
+import { AdvertisingData } from '../pairingConfig';
 
 const infoConfig = {
     title: 'Dual-core Bluetooth 5.4 SoC',
@@ -152,7 +153,10 @@ const appsConfig = [
     'pc-nrfconnect-dtm',
 ];
 
-const pairingImage = '../resources/devices/images/5340DK_pairing.png';
+const advertisingData = {
+    enablePairingImage: '../resources/devices/images/5340DK_pairing.png',
+    button: 'middle button',
+} as AdvertisingData;
 
 export default {
     device: 'nRF5340 DK',
@@ -163,7 +167,7 @@ export default {
         Verify(verifyConfig),
         SelectEcosystem(),
         EcosystemRequirements(),
-        EnableAdvertising(pairingImage),
+        EnableAdvertising(advertisingData),
         Pairing(),
         Interaction(interactConfig),
         Learn(learnConfig),

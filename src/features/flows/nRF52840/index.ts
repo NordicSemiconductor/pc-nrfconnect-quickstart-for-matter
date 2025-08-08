@@ -17,6 +17,7 @@ import Program from '../../../common/steps/program';
 import Rename from '../../../common/steps/Rename';
 import SelectEcosystem from '../../../common/steps/SelectEcosystem';
 import { Choice } from '../../device/deviceSlice';
+import { AdvertisingData } from '../pairingConfig';
 
 const infoConfig = {
     title: 'Versatile single-board development kit',
@@ -144,7 +145,10 @@ const appsConfig = [
     'pc-nrfconnect-dtm',
 ];
 
-const pairingImage = '../resources/devices/images/52840DK_pairing.png';
+const advertisingData = {
+    enablePairingImage: '../resources/devices/images/52840DK_pairing.png',
+    button: 'button 0',
+} as AdvertisingData;
 
 export default {
     device: 'nRF52840 DK',
@@ -155,7 +159,7 @@ export default {
         Verify(verifyConfig),
         SelectEcosystem(),
         EcosystemRequirements(),
-        EnableAdvertising(pairingImage),
+        EnableAdvertising(advertisingData),
         Pairing(),
         Interaction(interactConfig),
         Learn(learnConfig),

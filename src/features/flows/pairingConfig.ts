@@ -16,6 +16,11 @@ export interface PairingConfig {
     autoAdvertise: boolean;
 }
 
+export interface AdvertisingData {
+    enablePairingImage: string;
+    button: string;
+}
+
 export const pairingConfig: PairingConfig[] = [
     {
         name: 'Matter Door Lock',
@@ -32,6 +37,14 @@ export const pairingConfig: PairingConfig[] = [
             '../resources/devices/factory_data/light_bulb.hex'
         ),
         autoAdvertise: true,
+    },
+    {
+        name: 'Matter Weather Station',
+        factoryData: path.resolve(
+            __dirname,
+            '../resources/devices/factory_data/weather_station.hex'
+        ),
+        autoAdvertise: false,
     },
 ];
 

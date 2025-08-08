@@ -9,8 +9,8 @@ import React from 'react';
 import NRF54L15 from './nRF54L15';
 import NRF5340 from './nRF5340';
 import NRF52840 from './nRF52840';
-import THINGY53 from './thingy53';
 import { getSelectedPairingConfig, pairingConfig } from './pairingConfig';
+import THINGY53 from './thingy53';
 
 export interface Flow {
     name: string;
