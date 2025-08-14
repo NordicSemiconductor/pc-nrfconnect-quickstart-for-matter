@@ -4,12 +4,12 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
-// import path from 'path';
-
 import Verify from '../../../common/steps/5xFamilyVerify';
 import Apps from '../../../common/steps/Apps';
 import Develop from '../../../common/steps/develop';
 import EcosystemRequirements from '../../../common/steps/EcosystemRequirements';
+import EcosystemSetup from '../../../common/steps/EcosystemSetup';
+import EnableAdvertising from '../../../common/steps/EnableAdvertising';
 import Info from '../../../common/steps/Info';
 import Interaction from '../../../common/steps/Interaction';
 import Learn from '../../../common/steps/Learn';
@@ -18,11 +18,12 @@ import Program from '../../../common/steps/program';
 import Rename from '../../../common/steps/Rename';
 import SelectEcosystem from '../../../common/steps/SelectEcosystem';
 import { Choice } from '../../device/deviceSlice';
+import { AdvertisingData } from '../pairingConfig';
 
 const infoConfig = {
     title: 'Next-level multiprotocol SoC',
     markdownContent:
-        '![nRF54L15 DK](54L15DK.png)  \n&nbsp;  \nnRF54L15 is the first System-on-Chip (SoC) in the nRF54L Series. It is an ultra-low power Bluetooth 5.4 SoC with a new best-in-class multiprotocol radio and advanced security features.  \n&nbsp;  \nThe nRF54L Series takes the popular nRF52 Series to the next level with excellent processing power and efficiency, expanded memory, and new peripherals, all in a more compact package.',
+        '![nRF54L15 DK](54L15DK.png)  \n&nbsp;  \nnRF54L15 is the first System-on-Chip (SoC) in the nRF54L Series. It is an ultra-low power Bluetooth 5.4 SoC with a new best-in-class multiprotocol radio and advanced security features.  \n&nbsp; \n&nbsp; \n&nbsp; ![54L15 DK Technologies](54L15DKTech.png) \n&nbsp;  \nThe nRF54L Series takes the popular nRF52 Series to the next level with excellent processing power and efficiency, expanded memory, and new peripherals, all in a more compact package. \n&nbsp;  \n[Hardware documentation](https://docs.nordicsemi.com/bundle/ps_nrf54L15/page/keyfeatures_html5.html)',
 };
 
 const programConfig = [
@@ -85,50 +86,6 @@ const verifyConfig = [
     },
 ];
 
-const ecosystemsConfig = [
-    {
-        name: 'Apple Home',
-        description: 'Work with Apple Home',
-        link: 'https://www.apple.com/home-app/',
-    },
-    {
-        name: 'Google Home',
-        description: 'Work with Google Home',
-        link: 'https://home.google.com/welcome/',
-    },
-    {
-        name: 'Amazon Alexa',
-        description: 'Work with Amazon Alexa',
-        link: 'https://www.amazon.com/Alexa-App/b?ie=UTF8&node=18354642011',
-    },
-    {
-        name: 'SmartThings',
-        description: 'Work with SmartThings',
-        link: 'https://www.samsung.com/uk/smartthings/app/',
-    },
-];
-
-// TODO: Uncomment when pairing section is implemented
-// const lockFactoryDataImagePath = path.resolve(
-//     __dirname,
-//     '../../../resources/devices/images/lock_factory_data.png'
-// );
-// const lightBulbFactoryDataImagePath = path.resolve(
-//     __dirname,
-//     '../../../resources/devices/images/light_bulb_factory_data.png'
-// );
-
-// const pairingConfig = [
-//     {
-//         name: 'Matter Door Lock',
-//         qrCodePng: lockFactoryDataImagePath,
-//     },
-//     {
-//         name: 'Matter Light Bulb',
-//         qrCodePng: lightBulbFactoryDataImagePath,
-//     },
-// ];
-
 const interactConfig = [
     {
         name: 'Matter Door Lock',
@@ -190,6 +147,11 @@ const appsConfig = [
     'pc-nrfconnect-dtm',
 ];
 
+const advertisingData = {
+    enablePairingImage: '../resources/devices/images/54L15DK_pairing.png',
+    button: 'Button 0',
+} as AdvertisingData;
+
 export default {
     device: 'nRF54L15 DK',
     flow: [
@@ -197,8 +159,10 @@ export default {
         Rename(),
         Program(programConfig),
         Verify(verifyConfig),
-        SelectEcosystem(ecosystemsConfig),
+        SelectEcosystem(),
         EcosystemRequirements(),
+        EcosystemSetup(),
+        EnableAdvertising(advertisingData),
         Pairing(),
         Interaction(interactConfig),
         Learn(learnConfig),
