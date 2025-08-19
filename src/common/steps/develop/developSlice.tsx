@@ -9,6 +9,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { type RootState } from '../../../app/store';
 
 export enum DevelopState {
+    PREPARE_FOR_MATTER_DEV,
     CHOOSE,
     OPEN_VS_CODE,
     VS_CODE_OPENED,
@@ -21,7 +22,7 @@ interface State {
 }
 
 const initialState: State = {
-    developState: DevelopState.CHOOSE,
+    developState: DevelopState.PREPARE_FOR_MATTER_DEV,
     isVsCodeInstalled: false,
 };
 
@@ -33,6 +34,7 @@ const slice = createSlice({
             state,
             { payload: newState }: PayloadAction<DevelopState>
         ) => {
+            console.log('setDevelopState', newState);
             state.developState = newState;
         },
         setIsVsCodeInstalled: (

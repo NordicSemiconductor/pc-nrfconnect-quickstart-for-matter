@@ -7,17 +7,28 @@
 import React from 'react';
 
 import { useAppSelector } from '../../../app/store';
+import { ResourcesWithdDownloadAndGuide } from '../../Resource';
 import Choose from './Choose';
 import CLI from './CLI';
 import { DevelopState, getDevelopState } from './developSlice';
+import MatterDev from './MatterDev';
 import OpenVsCode, { SampleWithRef } from './OpenVsCode';
 import VsCodeOpened from './VsCodeOpened';
 
-const DevelopStep = ({ samples }: { samples: SampleWithRef[] }) => {
+const DevelopStep = ({
+    samples,
+    matterResources,
+}: {
+    samples: SampleWithRef[];
+    matterResources: ResourcesWithdDownloadAndGuide[];
+}) => {
     const developState = useAppSelector(getDevelopState);
 
     return (
         <>
+            {developState === DevelopState.PREPARE_FOR_MATTER_DEV && (
+                <MatterDev resources={matterResources} />
+            )}
             {developState === DevelopState.CHOOSE && <Choose />}
             {developState === DevelopState.OPEN_VS_CODE && (
                 <OpenVsCode samples={samples} />
@@ -28,7 +39,10 @@ const DevelopStep = ({ samples }: { samples: SampleWithRef[] }) => {
     );
 };
 
-export default (samples: SampleWithRef[]) => ({
+export default (
+    samples: SampleWithRef[],
+    matterResources: ResourcesWithdDownloadAndGuide[]
+) => ({
     name: 'Develop',
-    component: () => DevelopStep({ samples }),
+    component: () => DevelopStep({ samples, matterResources }),
 });

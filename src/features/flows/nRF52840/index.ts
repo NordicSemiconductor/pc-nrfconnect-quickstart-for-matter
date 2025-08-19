@@ -18,6 +18,12 @@ import Program from '../../../common/steps/program';
 import Rename from '../../../common/steps/Rename';
 import SelectEcosystem from '../../../common/steps/SelectEcosystem';
 import { Choice } from '../../device/deviceSlice';
+import {
+    appsCommonConfig,
+    commonLearningResources,
+    developCommonConfig,
+    matterDevResources,
+} from '../commonResources';
 import { AdvertisingData } from '../pairingConfig';
 
 const infoConfig = {
@@ -100,24 +106,7 @@ const interactConfig = [
 ];
 
 const learnConfig = [
-    {
-        label: 'Developer Academy',
-        description:
-            'Get the know-how to build wireless products using Nordic Semiconductor solutions.',
-        link: {
-            label: 'Nordic Developer Academy',
-            href: 'https://academy.nordicsemi.com/',
-        },
-    },
-    {
-        label: 'nRF Connect SDK and Zephyr',
-        description:
-            'Learn about the application development in the nRF Connect SDK and Zephyr.',
-        link: {
-            label: 'Application development',
-            href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/app_dev.html',
-        },
-    },
+    ...commonLearningResources,
     {
         label: 'Developing with nRF52 Series',
         description:
@@ -127,23 +116,6 @@ const learnConfig = [
             href: 'https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/app_dev/device_guides/nrf52/index.html',
         },
     },
-];
-
-const developConfig = [
-    {
-        ref: 'Matter Door Lock',
-        sampleSource: 'nrf/samples/matter/lock',
-    },
-    {
-        ref: 'Matter Light Bulb',
-        sampleSource: 'nrf/samples/matter/light_bulb',
-    },
-];
-
-const appsConfig = [
-    'pc-nrfconnect-programmer',
-    'pc-nrfconnect-serial-terminal',
-    'pc-nrfconnect-dtm',
 ];
 
 const advertisingData = {
@@ -165,7 +137,7 @@ export default {
         Pairing(),
         Interaction(interactConfig),
         Learn(learnConfig),
-        Develop(developConfig),
-        Apps(appsConfig),
+        Develop(developCommonConfig, matterDevResources),
+        Apps(appsCommonConfig),
     ],
 };

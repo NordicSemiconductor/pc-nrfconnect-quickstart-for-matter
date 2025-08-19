@@ -27,6 +27,14 @@ export interface ResourceProps {
     link: Link;
 }
 
+export interface ResourcesWithdDownloadAndGuide {
+    label: string;
+    description: string;
+    downloadLink?: Link;
+    guideLink: Link;
+    buttonLabel?: string;
+}
+
 export const Resource = ({ label, description, link }: ResourceProps) => (
     <div>
         <b>{label}</b>
@@ -37,6 +45,46 @@ export const Resource = ({ label, description, link }: ResourceProps) => (
         </div>
     </div>
 );
+
+export const ResourceWithDownloadAndGuide = ({
+    label,
+    description,
+    downloadLink,
+    guideLink,
+    buttonLabel = 'Download',
+}: ResourcesWithdDownloadAndGuide) => {
+    const onClickDownload = () => {
+        if (downloadLink) {
+            window.open(downloadLink.href, '_blank');
+        }
+    };
+    return (
+        <div>
+            <b>{label}</b>
+            <br />
+            {description}
+            <div className="tw-pt-0.5 tw-text-xs">
+                See the{' '}
+                <Link
+                    label={guideLink.label}
+                    href={guideLink.href}
+                    color="tw-text-primary"
+                />
+            </div>
+            <div style={{ height: '5px' }} />
+            {downloadLink && (
+                <Button
+                    variant="link-button"
+                    size="xl"
+                    onClick={onClickDownload}
+                    className="tw-flex-1"
+                >
+                    {buttonLabel}
+                </Button>
+            )}
+        </div>
+    );
+};
 
 interface ResourceWithButtonProps {
     title: string;

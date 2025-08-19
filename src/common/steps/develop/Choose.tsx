@@ -86,7 +86,13 @@ export default () => {
                 <RadioSelect items={items} onSelect={setSelected} />
             </Main.Content>
             <Main.Footer>
-                <Back />
+                <Back
+                    onClick={() => {
+                        dispatch(
+                            setDevelopState(DevelopState.PREPARE_FOR_MATTER_DEV)
+                        );
+                    }}
+                />
                 <Skip />
                 <Next
                     disabled={!selected}
