@@ -71,7 +71,7 @@ const interactConfig = [
     {
         name: 'Matter Weather Station',
         instruction:
-            'Click the Temperature, Humidity or Pressure sensor icons to observe the device changing measured data.',
+            'Follow the instructions below to observe the measurement results of Matter Weather Station device:',
     },
 ];
 

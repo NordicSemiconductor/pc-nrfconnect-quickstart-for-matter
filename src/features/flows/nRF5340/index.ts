@@ -98,12 +98,16 @@ const interactConfig = [
     {
         name: 'Matter Door Lock',
         instruction:
-            'Click the Matter Door Lock icon to change the device state and watch the LED2 on the board that corresponds to the lock state.',
+            'Follow the instructions below to control the Matter Door Lock state:',
+        dkImage: '../resources/devices/images/5340DK_controlling.png',
+        dkExtraData: 'LED 2',
     },
     {
         name: 'Matter Light Bulb',
         instruction:
-            'Click the Matter Light Bulb icon to change the device state and watch the LED2 on the board that corresponds to the light bulb state.',
+            'Follow the instructions below to control the Matter Light Bulb state:',
+        dkImage: '../resources/devices/images/5340DK_controlling.png',
+        dkExtraData: 'LED 2',
     },
 ];
 

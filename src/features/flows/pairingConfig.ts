@@ -96,6 +96,18 @@ const googleHomeGuideStartBase = [
 
 const googleHomeGuideEndBase = [
     'The device will be visible in your selected room',
+    'Tap on the <b>not-specified(2)</b> device tile to open detailed view',
+    'Tap on the <b>Gear</b> icon to access settings',
+    'Tap on the <b>Name</b> field and change it to <b>Humidity Sensor</b>',
+    'Navigate back to the <b>Devices</b> page',
+    'Tap on the <b>not-specified</b> device tile to open detailed view',
+    'Tap on the <b>Gear</b> icon to access settings',
+    'Tap on the <b>Name</b> field and change it to <b>Pressure Sensor</b>',
+    'Navigate back to the <b>Devices</b> page',
+    'Tap on the <b>Test Thingy:53</b> device tile to open detailed view',
+    'Tap on the <b>Gear</b> icon to access settings',
+    'Tap on the <b>Name</b> field and change it to <b>Temperature Sensor</b>',
+    'Navigate back to the <b>Devices</b> page',
 ];
 
 export const pairingConfig: PairingConfig[] = [
