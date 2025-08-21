@@ -8,7 +8,7 @@ import React from 'react';
 
 // TODO: Make these images part of the ecosystem data structure and replace with ecosystem specific images
 import phoneImg from '../../../resources/phone.png';
-import hubImg from '../../../resources/smart_speaker_mini.png';
+import hubImg from '../../../resources/ecosystems/smarththings_hub.png'
 import { getSelectedEcosystem } from '../../features/flows/ecosystemConfig';
 import { Back } from '../Back';
 import Main from '../Main';
@@ -22,26 +22,6 @@ const EcosystemRequirementsStep = () => {
             <Main.Content
                 heading={`Complete the requirements for the ${ecosystem?.name}`}
             >
-                <div style={{ fontSize: '1.2em' }}>
-                    Visit the{' '}
-                    {ecosystem?.link ? (
-                        <a
-                            href={ecosystem.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                                fontStyle: 'italic',
-                                color: 'rgb(0, 169, 206)',
-                            }}
-                        >
-                            {ecosystem.name}
-                        </a>
-                    ) : (
-                        ecosystem?.name
-                    )}{' '}
-                    webpage to learn more about the application and Matter
-                    support.
-                </div>
                 <div style={{ padding: '20px 0', fontSize: '1.2em' }}>
                     You are going to need the following devices and tools to use
                     this ecosystem:
@@ -57,43 +37,94 @@ const EcosystemRequirementsStep = () => {
                     <div
                         style={{
                             textAlign: 'left',
-                            fontWeight: 'bold',
-                            fontSize: '1.5em',
                             marginLeft: '40px',
+                            maxWidth: '800px',
                         }}
                     >
-                        Home Hub with Thread Border Router
+                        <div style={{ fontWeight: 'bold', fontSize: '1.5em' }}>
+                            Home Hub with Thread Border Router support
+                        </div>
                         <img
-                            src={hubImg}
+                            src={ecosystem?.hubImage}
                             alt="Home Hub"
                             style={{
                                 display: 'block',
                                 margin: '20px auto 0 0',
-                                maxWidth: '600px',
+                                maxWidth: '400px',
                             }}
                         />
+                        <div style={{ fontSize: '1.2em', marginTop: '30px' }}>
+                            <i>
+                                <p>
+                                    <br />
+                                    <b>Note:</b> This guide uses <b>{ecosystem?.hubName}</b> device, but you can use any other Home Hub compatible with {ecosystem?.name} that supports Matter and Thread Border Router.
+                                    <br />
+                                </p>
+                            </i>
+                            <br />
+                            <br />                            
+                            Visit the{' '}
+                                {ecosystem?.hubManual ? (
+                                    <a
+                                        href={ecosystem.hubManual}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{
+                                            fontStyle: 'italic',
+                                            color: 'rgb(0, 169, 206)',
+                                        }}
+                                    >
+                                        {ecosystem.name}
+                                    </a>
+                                ) : (
+                                    ecosystem?.name
+                                )}{' '}
+                                webpage to learn more about the Matter and supported Home Hub devices.
+                        </div>
                     </div>
                     <div
                         style={{
                             textAlign: 'right',
-                            fontWeight: 'bold',
-                            fontSize: '1.5em',
                             marginRight: '40px',
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
                         }}
                     >
-                        Smartphone with {ecosystem?.name} application installed
+                        <div style={{ fontWeight: 'bold', fontSize: '1.5em' }}>
+                            Smartphone with {ecosystem?.name} application
+                            installed
+                        </div>
                         <img
-                            src={phoneImg}
+                            src={ecosystem?.appImage}
                             alt="Smartphone"
                             style={{
                                 display: 'block',
                                 margin: '20px auto 0 auto',
-                                maxWidth: '600px',
+                                maxWidth: '200px',
                             }}
                         />
+                        <div style={{ fontSize: '1.2em', marginTop: '30px', textAlign: 'left', }}>
+                            The {ecosystem?.name} app supports <b>{ecosystem?.appSystemSupport}</b>.
+                            <br /><br />
+                            Visit the{' '}
+                            {ecosystem?.appManual ? (
+                                <a
+                                    href={ecosystem.appManual}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        fontStyle: 'italic',
+                                        color: 'rgb(0, 169, 206)',
+                                    }}
+                                >
+                                    {ecosystem.name}
+                                </a>
+                            ) : (
+                                ecosystem?.name
+                            )}{' '}
+                            webpage to learn more about the application.
+                        </div>
                     </div>
                 </div>
             </Main.Content>

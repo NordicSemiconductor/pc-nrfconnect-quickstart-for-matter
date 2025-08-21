@@ -67,9 +67,9 @@ const EcosystemSetupStep = () => {
                 <br />
                 <div style={{ fontSize: '1.2em' }}>
                     Visit the{' '}
-                    {ecosystem?.link ? (
+                    {ecosystem?.appManual ? (
                         <a
-                            href={ecosystem.link}
+                            href={ecosystem.appManual}
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{
