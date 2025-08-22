@@ -31,13 +31,7 @@ const EcosystemRequirementsStep = () => {
                         alignItems: 'flex-start',
                     }}
                 >
-                    <div
-                        style={{
-                            textAlign: 'left',
-                            marginLeft: '40px',
-                            maxWidth: '800px',
-                        }}
-                    >
+                    <div className="ecosystem-hub-image">
                         <div style={{ fontWeight: 'bold', fontSize: '1.5em' }}>
                             Home Hub with Thread Border Router support
                         </div>
@@ -100,11 +94,7 @@ const EcosystemRequirementsStep = () => {
                         <img
                             src={ecosystem?.appImage}
                             alt="Smartphone"
-                            style={{
-                                display: 'block',
-                                margin: '20px auto 0 auto',
-                                maxWidth: '200px',
-                            }}
+                            className="ecosystem-app-image"
                         />
                         <div
                             style={{
