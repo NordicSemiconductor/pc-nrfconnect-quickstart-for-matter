@@ -6,7 +6,10 @@
 
 import React from 'react';
 
-import { getSelectedEcosystem } from '../../features/flows/ecosystemConfig';
+import {
+    ecosystemConfig,
+    getSelectedEcosystem,
+} from '../../features/flows/ecosystemConfig';
 import { videoNote } from '../../features/flows/videoNote';
 import { Back } from '../Back';
 import Main from '../Main';
@@ -20,40 +23,44 @@ const EcosystemSetupStep = () => {
             <Main.Content
                 heading={`Complete the requirements for the ${ecosystem?.name}`}
             >
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'flex-start',
-                    }}
-                >
-                    <div
-                        style={{
-                            textAlign: 'left',
-                            marginLeft: '40px',
-                            fontSize: '1.2em',
-                        }}
-                    >
-                        Follow the instructions below to setup your ecosystem:
-                        <br />
-                        <br />
-                        <div className="guide">{ecosystem?.setupManual}</div>
-                        <br />
-                        Watch the video to see how to setup the{' '}
-                        {ecosystem?.name} hub.
-                        <br />
+                <div className="pairing-description">
+                    Follow the instructions below to setup {ecosystem?.hubName}{' '}
+                    for the {ecosystem?.name} ecosystem:
+                </div>
+                <div className="main-container">
+                    <div className="guide">
+                        {ecosystem.setupManual.map((guide, index) => (
+                            <div
+                                key={
+                                    typeof guide === 'string'
+                                        ? guide.slice(0, 32)
+                                        : index
+                                }
+                            >
+                                <span className="guide-index">
+                                    {index + 1}.
+                                </span>{' '}
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: guide,
+                                    }}
+                                />
+                            </div>
+                        ))}
                     </div>
-                    <div className="video-container">
-                        <video
-                            src={ecosystem?.setupVideo}
-                            className="video"
-                            controls
-                            autoPlay
-                            loop
-                            muted
-                        >
-                            Your device does not support the video tag.
-                        </video>
+                    <div className="content-container">
+                        <div className="video-container">
+                            <video
+                                src={ecosystem?.setupVideo}
+                                className="video"
+                                controls
+                                autoPlay
+                                loop
+                                muted
+                            >
+                                Your device does not support the video tag.
+                            </video>
+                        </div>
                     </div>
                 </div>
                 <hr

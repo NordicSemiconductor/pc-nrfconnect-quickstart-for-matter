@@ -15,7 +15,7 @@ export interface EcosystemConfig {
     appImage: string;
     appSystemSupport: string;
     setupVideo: string;
-    setupManual: string;
+    setupManual: string[];
     ecosystemVersion: string;
 }
 
@@ -33,8 +33,18 @@ export const ecosystemConfig: EcosystemConfig[] = [
         appImage: '../resources/ecosystems/Apple/apple_home_app.png',
         appSystemSupport: 'only iOS system',
         setupVideo: '../resources/ecosystems/Apple/apple_hub.mp4',
-        // TODO: Add setup manual
-        setupManual: '',
+        setupManual: [
+            'Power on the <b>Apple HomePod Mini</b>',
+            'Make sure that your smartphone is connected to the Wi-Fi network',
+            'Open the <b>Apple Home</b> app',
+            'The nearby hub will be detected automatically and you will be asked to confirm the setup',
+            'Tap the <b> Set Up </b> tile',
+            'Center the HomePod Mini device top part in the middle of the frame displayed on the screen',
+            'Select <b>Home</b> that you want to add the device to',
+            'Select <b>Room</b> that you want to add the device to',
+            'Agree to the usage terms and conditions',
+            'The device will be added to the Apple Home app and it should be visible in the selected room',
+        ],
         ecosystemVersion: '18.6',
     },
     {
@@ -49,24 +59,59 @@ export const ecosystemConfig: EcosystemConfig[] = [
         appImage: '../resources/ecosystems/Google/google_home_app.png',
         appSystemSupport: 'Android and iOS systems',
         setupVideo: '../resources/ecosystems/Google/google_hub.mp4',
-        // TODO: Add setup manual
-        setupManual: '',
+        setupManual: [
+            'Power on the <b>Google Nest Hub 2nd Gen</b>',
+            'Make sure that your smartphone is connected to the Wi-Fi network',
+            'Open the <b>Google Home</b> app',
+            'Go to <b>Devices</b> section',
+            'Tap the <b>Add device</b> button',
+            'Tap the <b>Google Nest or partner device</b> option',
+            'Select <b>Home</b> that you want to add the device to',
+            'The nearby hub will be detected automatically and you will be asked to confirm the by tapping <b>Yes</b>',
+            'Scan the QR code displayed on the screen of the hub',
+            'Decide if you want to help improving Nest Hub by sharing statistics or not',
+            'Tap <b>Proceed</b> button when asked about your country compatibility',
+            'Select <b>Room</b> that you want to add the device to',
+            'Choose the Wi-Fi network that you want to use for the device. It should be the same as the one that you are currently using on your smartphone',
+            'Click <b>Next</b> button on next few screens that instruct you how to use the device',
+            'The device will be added to the Google Home app and it should be visible in the selected room',
+        ],
         ecosystemVersion: '3.38.53.1',
     },
     {
         name: 'Amazon Alexa',
         description: 'Work with Amazon Alexa',
-        appManual: 'https://www.amazon.com/Alexa-App/b?ie=UTF8&node=18354642011',
+        appManual:
+            'https://www.amazon.com/Alexa-App/b?ie=UTF8&node=18354642011',
         pairingManual:
             'https://www.amazon.com/gp/help/customer/display.html?nodeId=G3RKPNRKF33ECTW7',
-        hubManual: 'https://developer.amazon.com/en-US/docs/alexa/smarthome/matter-support.html#compatible-echos',
+        hubManual:
+            'https://developer.amazon.com/en-US/docs/alexa/smarthome/matter-support.html#compatible-echos',
         hubImage: '../resources/ecosystems/Amazon/amazon_hub.png',
         hubName: 'Amazon Echo 4th Gen',
         appImage: '../resources/ecosystems/Amazon/alexa_app.png',
         appSystemSupport: 'Android and iOS systems',
         setupVideo: '../resources/ecosystems/Amazon/alexa_hub.mp4',
-        // TODO: Add setup manual
-        setupManual: '',
+        setupManual: [
+            'Power on the <b>Amazon Echo 4th Gen</b>',
+            'Make sure that your smartphone is connected to the Wi-Fi network',
+            'Open the <b>Alexa</b> app',
+            'Go to the <b>Devices</b> section',
+            'Tap <b>+</b>',
+            'Tap <b>Add Device</b> button',
+            'Select <b>Amazon Echo</b> from the list of <b>All Devices</b>',
+            'Select <b>Echo, Echo Dot, Echo Pop and more</b>',
+            'Make sure that the Echo device is displaying an orange light and tap <b>Yes</b>',
+            'The nearby hub will be detected automatically. Tap on it once listed',
+            'Tap <b>Continue</b> after connecting to Wi-Fi network',
+            'Tap <b>Skip</b> once informed that application could not detect your location',
+            'Select <b>Room</b> that you want to add the device to',
+            'Tap the <b>Google Nest or partner device</b> option',
+            'Select <b>Home</b> that you want to add the device to',
+            'You can setup voice ID, or tap <b>Remind me later</b>',
+            "Tap <b>Let's go</b>",
+            'The device will be added to the Alexa app and it should be visible in the selected room',
+        ],
         ecosystemVersion: '2025.16',
     },
     {
@@ -81,8 +126,23 @@ export const ecosystemConfig: EcosystemConfig[] = [
         appImage: '../resources/ecosystems/SmartThings/smartthings_app.png',
         appSystemSupport: 'Android and iOS systems',
         setupVideo: '../resources/ecosystems/SmartThings/smartthings_hub.mp4',
-        // TODO: Add setup manual
-        setupManual: '',
+        setupManual: [
+            'Power on the <b>Aeotec Smart Home Hub</b>',
+            'Make sure that your smartphone is connected to the Wi-Fi network',
+            'Open the <b>SmartThings</b> app',
+            'Go to the <b>Devices</b> section',
+            'Tap the <b>Add device</b> button',
+            'Tap the <b>Add</b> button in the <b>Samsung devices</b> section',
+            'Select <b>Smart Home Hub</b> from the list',
+            'Scan the QR code printed on the bottom of the hub',
+            'You can <b>Skip</b> the geolocationsetup',
+            'Select <b>Wi-Fi</b> connection type',
+            'Make sure that the light on the Hub is bliking red and green and tap <b>Next</b>',
+            'Choose the Wi-Fi network that you want to use for the device. It should be the same as the one that you are currently using on your smartphone',
+            'Select the location, room and the name for the device, and tap <b>Done</b>',
+            'You will be navigated to the device detailed view. Tap <b><</b> to go back to the room view',
+            'The device will be added to the SmartThings app and it should be visible in the selected room',
+        ],
         ecosystemVersion: '1.8.34.21',
     },
 ];

@@ -6,9 +6,6 @@
 
 import React from 'react';
 
-// TODO: Make these images part of the ecosystem data structure and replace with ecosystem specific images
-import phoneImg from '../../../resources/phone.png';
-import hubImg from '../../../resources/ecosystems/smarththings_hub.png'
 import { getSelectedEcosystem } from '../../features/flows/ecosystemConfig';
 import { Back } from '../Back';
 import Main from '../Main';
@@ -57,29 +54,34 @@ const EcosystemRequirementsStep = () => {
                             <i>
                                 <p>
                                     <br />
-                                    <b>Note:</b> This guide uses <b>{ecosystem?.hubName}</b> device, but you can use any other Home Hub compatible with {ecosystem?.name} that supports Matter and Thread Border Router.
+                                    <b>Note:</b> This guide uses{' '}
+                                    <b>{ecosystem?.hubName}</b> device, but you
+                                    can use any other Home Hub compatible with{' '}
+                                    {ecosystem?.name} that supports Matter and
+                                    Thread Border Router.
                                     <br />
                                 </p>
                             </i>
                             <br />
-                            <br />                            
+                            <br />
                             Visit the{' '}
-                                {ecosystem?.hubManual ? (
-                                    <a
-                                        href={ecosystem.hubManual}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        style={{
-                                            fontStyle: 'italic',
-                                            color: 'rgb(0, 169, 206)',
-                                        }}
-                                    >
-                                        {ecosystem.name}
-                                    </a>
-                                ) : (
-                                    ecosystem?.name
-                                )}{' '}
-                                webpage to learn more about the Matter and supported Home Hub devices.
+                            {ecosystem?.hubManual ? (
+                                <a
+                                    href={ecosystem.hubManual}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        fontStyle: 'italic',
+                                        color: 'rgb(0, 169, 206)',
+                                    }}
+                                >
+                                    {ecosystem.name}
+                                </a>
+                            ) : (
+                                ecosystem?.name
+                            )}{' '}
+                            webpage to learn more about the Matter and supported
+                            Home Hub devices.
                         </div>
                     </div>
                     <div
@@ -104,9 +106,17 @@ const EcosystemRequirementsStep = () => {
                                 maxWidth: '200px',
                             }}
                         />
-                        <div style={{ fontSize: '1.2em', marginTop: '30px', textAlign: 'left', }}>
-                            The {ecosystem?.name} app supports <b>{ecosystem?.appSystemSupport}</b>.
-                            <br /><br />
+                        <div
+                            style={{
+                                fontSize: '1.2em',
+                                marginTop: '30px',
+                                textAlign: 'left',
+                            }}
+                        >
+                            The {ecosystem?.name} app supports{' '}
+                            <b>{ecosystem?.appSystemSupport}</b>.
+                            <br />
+                            <br />
                             Visit the{' '}
                             {ecosystem?.appManual ? (
                                 <a
