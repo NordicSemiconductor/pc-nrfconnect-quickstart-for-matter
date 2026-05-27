@@ -1,4 +1,4 @@
-name: Release
+﻿name: Release
 
 on:
     workflow_dispatch:
@@ -22,4 +22,5 @@ jobs:
         with:
             source: ${{ inputs.source }}
             ref: ${{ inputs.ref }}
+            unified_doc_project_name: pc-nrfconnect-matter-quickstart
         secrets: inherit
